@@ -41,12 +41,13 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/auth/login").permitAll()
                         .requestMatchers("/api/users/register").permitAll()
                         .requestMatchers("/api/users/**").permitAll()
                         .requestMatchers("/api/jobs/**").permitAll()
-                        .requestMatchers("/api/applications/**").hasAnyRole("JOB_SEEKER", "ADMIN")
-                        .requestMatchers("/api/reviews/**").hasRole("EMPLOYER")
-                        .requestMatchers("/api/resumes/**").hasRole("JOB_SEEKER")
+                        .requestMatchers("/api/applications/**").permitAll()
+                        .requestMatchers("/api/reviews/**").permitAll()
+                        .requestMatchers("/api/resumes/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .userDetailsService(customUserDetailsService);

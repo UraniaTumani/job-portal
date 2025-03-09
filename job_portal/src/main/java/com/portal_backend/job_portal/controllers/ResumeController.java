@@ -3,10 +3,9 @@ package com.portal_backend.job_portal.controllers;
 import com.portal_backend.job_portal.entities.Resume;
 import com.portal_backend.job_portal.services.ResumeService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/resumes")
@@ -15,6 +14,11 @@ public class ResumeController {
 
     public ResumeController(ResumeService resumeService) {
         this.resumeService = resumeService;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Resume>> getAllResumes() {
+        return ResponseEntity.ok(resumeService.getAllResumes());
     }
 
     @PostMapping

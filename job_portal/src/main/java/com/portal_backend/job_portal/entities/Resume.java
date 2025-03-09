@@ -13,9 +13,10 @@ public class Resume {
 
     private String fileUrl;
 
-    @ManyToOne
-    @JoinColumn(name = "job_seeker_id", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "job_seeker_id") // Remove unique constraint
     private User jobSeeker;
+
 
     public Resume() {
     }

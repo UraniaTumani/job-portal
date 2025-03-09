@@ -15,8 +15,8 @@ public class Application {
     @JoinColumn(name = "job_id")
     private Job job;
 
-    @ManyToOne
-    @JoinColumn(name = "job_seeker_id")
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "job_seeker_id", nullable = false)
     private User jobSeeker;
 
     @Enumerated(EnumType.STRING)

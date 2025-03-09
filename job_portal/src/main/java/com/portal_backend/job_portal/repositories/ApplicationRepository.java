@@ -11,4 +11,5 @@ public interface ApplicationRepository extends JpaRepository<Application, Long> 
     Page<Application> findByJobTitleContaining(String jobTitle, Pageable pageable);
     Page<Application> findByStatus(String status, Pageable pageable);
     Page<Application> findByJobTitleContainingAndStatus(String jobTitle, String status, Pageable pageable);
+    void deleteByJobSeekerId(Long jobSeekerId);
 }

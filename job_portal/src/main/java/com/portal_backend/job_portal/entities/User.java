@@ -3,6 +3,8 @@ package com.portal_backend.job_portal.entities;
 import com.portal_backend.job_portal.enums.Role;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 
 @Entity
 @Table(name = "users")
@@ -17,6 +19,9 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToMany(mappedBy = "jobSeeker", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Application> applications;
 
     public User() {
     }
